@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 const basicRouter = require('./routes/basicRouter');
+const userRouter = require('./routes/userRouter');
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
@@ -27,6 +28,7 @@ app.use(
     })
 );
 
+app.use('/admin/users', userRouter);
 app.use('/', basicRouter);
 
 module.exports = app;
