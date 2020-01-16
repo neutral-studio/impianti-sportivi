@@ -1,98 +1,115 @@
-const express = require('express');
 const mongoose = require('mongoose');
-const flash = require('connect-flash');
+const express = require('express');
 const Impianto = require('./../models/Impianto');
 
 const app = express();
 
 
+/* Creating a new Impianto */
 exports.create = (req, res) => {
+    /* Getting data from forms */
     const newImpianto = {
         name: req.body.name,
         address: req.body.address,
         iFrame: req.body.iFrame,
         sport: req.body.sport,
-        managementType: req.body.managementType,
+        managementType: req.body.managementType * 1,
         manager: req.body.manager,
         imgs: req.body.imgs,
         tags: req.body.tags
-    }
+    };
+    /* Creating the Impianto */
     Impianto.create(newImpianto, (err, data) => {
         if (err) {
             res.status(400).json({
                 status: 'fail',
-                message: "Errore nella creazione dell'impianto"
+                message: 'Impianto could not be created'
             });
+        } else {
+            /* Impianto created */
+            res.send('Impianto has been created successfully');
         }
-        res.redirect('./../../impianti');
     })
 };
 
 
+/* Creating page */
 exports.get_create = (req, res) => {
-    /* req.flash('success', 'Impianto aggiunto con successo'); */
-    res.render('');
+    res.send('Create');
 };
 
 
+/* Editing an Impianto */
 exports.edit = (req, res) => {
     let id = req.params.id;
+    /* Updating the data */
     const updated = {
         name: req.body.name,
         address: req.body.address,
         iFrame: req.body.iFrame,
         sport: req.body.sport.replace(/\s+/g, '').split(','),
-        managementType: req.body.managementType*1,
+        managementType: req.body.managementType * 1,
         manager: req.body.manager,
         imgs: req.body.imgs.replace(/\s+/g, '').split(','),
-        tags: req.body.tags
+        tags: req.body.tags.replace(/\s+/g, '').split(',')
     };
+    /* Split tags */ 
+    for (var i=0; i < updated.tags.length; i++) {
+        updated.tags[i] = updated.tags[i].replace(/\s+/g, '').split('-');
+    }
+    
+    /* Research the Impianto by ID */
     Impianto.findById(id, (err, data) => {
         if (err) {
             res.status(404).json({
                 status: 'failed',
-                message: "L'impianto non esiste | ID non valido"
+                message: 'The impianto does not exist | Invalid ID'
             });
         }
+        /* Replace data */
         data.replaceOne(updated, err => {
             if (err) {
                 res.status(500).json({
-                    status: 'failed',
-                    message: "L'impianto non può essere modificato"
+                    status: 'invalid',
+                    message: 'Impianto could not be edited'
                 });
             } else {
-                /* req.flash('success', 'Impianto "' + updated.name + '" modificato con successo'); */
-                res.redirect('/impianti');
+                /* Impianto edited */
+                res.send('Impianto has been edited successfully');
             }
         });
     });
 };
 
 
+/* Editing page */
 exports.get_edit = (req, res) => {
+    /* Research the Impianto by ID */
     Impianto.findById(req.params.id, (err, data) => {
         if (err) {
             res.status(404).json({
                 status: 'failed',
-                message: "L'impianto non esiste | ID non valido"
+                message: 'The impianto does not exist | Invalid ID'
             });
         }
-        res.render('', { impianto: data });
+        res.send('Edited impianto page');
     });
 };
 
 
+/* Removing an Impianto */
 exports.remove = (req, res) => {
     let id = req.params.id;
+    /* Search and delete the Impianto by ID */
     Impianto.deleteOne( { _id: id}, (err, data) => {
         if (err) {
             res.status(500).json({
                 status: 'fail',
-                message: "Fallimento nell'eliminazione dell'impianto"
+                message: 'The impianto could not be deleted'
             });
         } else {
-            /* req.flash('danger', 'Hai eliminato un impianto'); */
-            res.redirect('/impianti');
+            /* Impianto deleted */
+            res.send('Impianto deleted successfully');
         }
     });
 };

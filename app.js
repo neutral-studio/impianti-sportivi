@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-const impiantiController = require('./routes/impiantiRouter');
+const impiantiRouter = require('./routes/impiantiRouter');
 const basicRouter = require('./routes/basicRouter');
 
 app.set('view engine', 'ejs');
@@ -29,7 +29,7 @@ app.use(
 );
 
 
-app.use('/admin/impianti', impiantiController);
+app.use('/admin/impianti', impiantiRouter);
 app.use('/', basicRouter);
 
 module.exports = app;
