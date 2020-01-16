@@ -57,7 +57,16 @@ exports.edit = (req, res) => {
     for (var i=0; i < updated.tags.length; i++) {
         updated.tags[i] = updated.tags[i].replace(/\s+/g, '').split('-');
     }
-    
+    /* Array to Object */
+    var obj = {};
+    updated.tags.forEach(item => {
+        item.forEach(function(val, i) {
+            if (i % 2 === 1) return;
+            obj[val] = item[i+1];
+        })
+    })
+    updated.tags = obj;
+
     /* Research the Impianto by ID */
     Impianto.findById(id, (err, data) => {
         if (err) {
