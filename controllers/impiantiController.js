@@ -61,8 +61,9 @@ exports.edit = (req, res) => {
     var obj = {};
     updated.tags.forEach(item => {
         item.forEach(function(val, i) {
-            if (i % 2 === 1) return;
-            obj[val] = item[i+1];
+            if (i % 2 === 1) return 
+            if (item[i+1] == '') obj[val] = 'true';
+            else obj[val] = item[i+1];
         })
     })
     updated.tags = obj;
