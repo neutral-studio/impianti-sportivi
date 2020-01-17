@@ -48,7 +48,7 @@ exports.editUser = (req, res) => {
         cf: req.body.cf,
         email: req.body.email,
         role: req.body.role * 1,
-        office: req.body.office.replace(/\s+/g, '').split(',')
+        office: req.body.office
     };
     /*Reserch of the user by using the ID*/
     User.findById(id, (err, data) => {
