@@ -129,9 +129,9 @@
                                 <div>
                                     <textarea id="mytextarea" style="margin-top: 20%;"></textarea>
                                     <div style="margin-top: 4%;">
-                                        <a onclick="re_toggle()"><button class="customBtn2" style="margin-right: 2%;">Inserisci Immagini</button></a>
-                                        <a onclick="toggle()"><button class="customBtn2" style="margin-right: 2%;">Inserisci Tags</button></a>
-                                        <a onclick="re_re_toggle()"><button class="customBtn2">Inserisci Sport</button></a>
+                                        <a onclick="re_toggle()"><button type="button" class="customBtn2" style="margin-right: 2%;">Inserisci Immagini</button></a>
+                                        <a onclick="toggle()"><button type="button" class="customBtn2" style="margin-right: 2%;">Inserisci Tags</button></a>
+                                        <a onclick="re_re_toggle()"><button type="button" class="customBtn2">Inserisci Sport</button></a>
                                     </div>
                                     <div style="margin-top: 4%;">
                                         <a>
@@ -152,7 +152,12 @@
 
                 <!-- NOT EDIT SPORT,IMGS,TAGS YET -->
 
-
+                <% console.log(impianto.tags[0]['illuminazione']); %>
+                <% for (var key in impianto.tags[0]) { %>
+                    <% if (impianto.tags[0].haOwnProperty(key)) { %>
+                            <% console.log(impianto.tags[key]); %>
+                    <% } %>
+                <% } %>
 
                 <div class="customContainer2" id="popup1">
                     <div class="customRow100">
@@ -166,6 +171,14 @@
                                         Valore Tag
                                     </th>
                                 </tr>
+                                <% for (var key in impianto.tags[0]) { %>
+                                    <tr>
+                                        <th>
+                                            <%= impianto.tags[key] %>
+                                            <% console.log(impianto.tags[key]); %>
+                                        </th>
+                                    </tr>
+                                <% }; %>
                             </table>
                             <div class="customCol">
                                 <div class="customInputBox">
