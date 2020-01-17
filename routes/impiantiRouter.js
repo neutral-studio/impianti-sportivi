@@ -21,10 +21,22 @@ router
     .post(impiantiController.edit);
 
 
+/* Visualize an Impianto */
+router
+    .route('/:id')
+    .get(impiantiController.get_impianto);
+
+
 /* Delete an Impianto*/
 router
     .route('/:id')
     .delete(impiantiController.remove);
+
+
+/* Impianti page */
+router
+    .route('/')
+    .get(impiantiController.get_impianti);
 
 
 /* Exporting router model */

@@ -5,6 +5,18 @@ const Impianto = require('./../models/Impianto');
 const app = express();
 
 
+/* Get impianti page */
+exports.get_impianti = (req, res) => {
+    Impianto.find((err, data) => {
+        if (err) {
+            res.status(404).render('404');
+        } else {
+            res.render('admin_impianti', { impianti: data });
+        }
+    })
+}
+
+
 /* Creating a new Impianto */
 exports.create = (req, res) => {
     /* Getting data from forms */
@@ -42,7 +54,8 @@ exports.create = (req, res) => {
             });
         } else {
             /* Impianto created */
-            res.send('Impianto has been created successfully');
+            /* res.send('Impianto has been created successfully'); */
+            res.redirect('/');
         }
     })
 };
@@ -50,7 +63,7 @@ exports.create = (req, res) => {
 
 /* Creating page */
 exports.get_create = (req, res) => {
-    res.send('Create');
+    res.render('newImpianto');
 };
 
 
@@ -100,7 +113,8 @@ exports.edit = (req, res) => {
                 });
             } else {
                 /* Impianto edited */
-                res.send('Impianto has been edited successfully');
+               /*  res.send('Impianto has been edited successfully'); */
+                res.redirect('/');
             }
         });
     });
@@ -117,9 +131,24 @@ exports.get_edit = (req, res) => {
                 message: 'The impianto does not exist | Invalid ID'
             });
         }
-        res.send('Edited impianto page');
+        /* res.send('Edited impianto page'); */
+        res.render('editImpianto', { impianto: data });
     });
 };
+
+
+/* Impianto page */
+exports.get_impianto = (req, res) => {
+    Impianto.findById(req.params.id, (err, data) => {
+        if (err) {
+            res.status(404).json({
+                status: 'failed',
+                message: 'The impianto does not exist | Invalid ID'
+            });
+        }
+        res.send('okay');
+    })
+} 
 
 
 /* Removing an Impianto */
