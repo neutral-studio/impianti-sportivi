@@ -7,6 +7,8 @@ const app = express();
 
 const impiantiRouter = require('./routes/impiantiRouter');
 const basicRouter = require('./routes/basicRouter');
+const userRouter = require('./routes/userRouter');
+const groupRouter = require('./routes/groupRouter');
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
@@ -30,6 +32,8 @@ app.use(
 
 
 app.use('/admin/impianti', impiantiRouter);
+app.use('/admin/groups', groupRouter);
+app.use('/admin/users', userRouter);
 app.use('/', basicRouter);
 
 module.exports = app;
