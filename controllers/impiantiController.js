@@ -12,12 +12,27 @@ exports.create = (req, res) => {
         name: req.body.name,
         address: req.body.address,
         iFrame: req.body.iFrame,
-        sport: req.body.sport,
+        sport: req.body.sport.replace(/\s+/g, '').split(','),
         managementType: req.body.managementType * 1,
         manager: req.body.manager,
-        imgs: req.body.imgs,
-        tags: req.body.tags
+        imgs: req.body.imgs.replace(/\s+/g, '').split(','),
+        tags: req.body.tags.replace(/\s+/g, '').split(',')
     };
+     /* Split tags */ 
+     for (var i=0; i < newImpianto.tags.length; i++) {
+        newImpianto.tags[i] = newImpianto.tags[i].replace(/\s+/g, '').split('-');
+    }
+    /* Array to Object */
+    var obj = {};
+    newImpianto.tags.forEach(item => {
+        item.forEach(function(val, i) {
+            if (i % 2 === 1) return 
+            if (item[i+1] == '') obj[val] = 'true';
+            else obj[val] = item[i+1];
+        })
+    })
+    newImpianto.tags = obj;
+
     /* Creating the Impianto */
     Impianto.create(newImpianto, (err, data) => {
         if (err) {
