@@ -13,14 +13,8 @@
 /* NAVBAR */
 
 .custom-brand {
-    font-size: 1.8em;
-    color: rgba(0, 0, 0, 0.5) !important;
     letter-spacing: 0.3em;
     transition: all 1s;
-}
-
-.custom-brand:hover {
-    color: red !important;
 }
 
 .custom-nav-link {
@@ -29,7 +23,7 @@
 }
 
 .custom-nav-link:hover {
-    color: red !important;
+    color: #FF3030 !important;
 }
 
 
