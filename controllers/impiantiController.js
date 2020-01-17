@@ -114,7 +114,7 @@ exports.edit = (req, res) => {
             } else {
                 /* Impianto edited */
                /*  res.send('Impianto has been edited successfully'); */
-                res.redirect('/');
+                res.redirect('/admin/impianti');
             }
         });
     });
@@ -137,7 +137,7 @@ exports.get_edit = (req, res) => {
 };
 
 
-/* Impianto page */
+/* Impianto page - user */
 exports.get_impianto = (req, res) => {
     Impianto.findById(req.params.id, (err, data) => {
         if (err) {
@@ -163,7 +163,7 @@ exports.remove = (req, res) => {
             });
         } else {
             /* Impianto deleted */
-            res.send('Impianto deleted successfully');
+            res.redirect('/admin/impianti');
         }
     });
 };

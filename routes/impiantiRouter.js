@@ -10,8 +10,8 @@ const router = express.Router();
 /* Create an Impianto */
 router
     .route('/create')
-    .post(impiantiController.create)
-    .get(impiantiController.get_create);
+    .get(impiantiController.get_create)
+    .post(impiantiController.create);
 
 
 /* Edit an Impianto */
@@ -19,13 +19,7 @@ router
     .route('/:id/edit')
     .get(impiantiController.get_edit)
     .post(impiantiController.edit);
-
-
-/* Visualize an Impianto */
-router
-    .route('/:id')
-    .get(impiantiController.get_impianto);
-
+    
 
 /* Delete an Impianto*/
 router

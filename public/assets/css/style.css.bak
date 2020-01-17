@@ -1,7 +1,34 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
-.overflowHidden {
-    overflow: hidden;
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap');
+
+/* ---------------------------------------------*/
+
+.custom-body {
+    background-repeat: no-repeat;
+    background-color: #0A0A0A;
+    font-family: 'Poppins', sans-serif;
+    /* background-image: linear-gradient(-45deg, grey, white); */
 }
+
+
+/* NAVBAR */
+
+.custom-brand {
+    letter-spacing: 0.3em;
+    transition: all 1s;
+}
+
+.custom-nav-link {
+    color: rgba(0, 0, 0, 0.5);
+    transition: all 1s;
+}
+
+.custom-nav-link:hover {
+    color: #FF3030 !important;
+}
+
+
+/* END-NAVBAR */
+
 
 .slogan {
     margin-top: 10px;
@@ -95,9 +122,14 @@
     box-shadow: 0 14px 26px -12px rgba(241, 31, 16, 0.932), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(180, 39, 14, 0.2) !important;
 }
 
+.custom-h1 {
+    color: rgb(245, 245, 247) !important;
+}
+
 .stemma {
     width: 65px;
     height: 65px;
+    margin: 20px;;
 }
 
 .thead {
@@ -186,12 +218,6 @@
     user-select: none;
 }
 
-.customContainer2#blur3.activo {
-    filter: blur(20px);
-    pointer-events: none;
-    user-select: none;
-}
-
 #popup1 {
     position: fixed;
     top: 40%;
@@ -230,28 +256,6 @@
 }
 
 #popup2.attivo {
-    top: 50%;
-    visibility: visible;
-    opacity: 1;
-    transition: 0.5s;
-}
-
-#popup3 {
-    position: fixed;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px;
-    padding: 50px;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.30);
-    border-radius: 6px;
-    background: #fff;
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.5s;
-}
-
-#popup3.activo {
     top: 50%;
     visibility: visible;
     opacity: 1;
@@ -377,61 +381,6 @@
     font-size: 18px;
     border-radius: 6px;
     width: em;
-}
-
-.customBtn4 {
-    text-align: center;
-    border: 2px solid;
-    cursor: pointer;
-    padding: 8px;
-    color: white;
-    background: rgb(247, 155, 18);
-    border-color: white;
-    font-size: 18px;
-    border-radius: 6px;
-    width: em;
-}
-
-.customContainerTable {
-    overflow: hidden;
-}
-
-.customTable {
-    float: left;
-}
-
-.customTable-2 {
-    margin-left: 50px;
-}
-
-.customTable-2 input {
-    display: block;
-    margin-bottom: 10px;
-}
-
-.customers {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.customers td,
-.customers th {
-    padding: 8px;
-    border: 1px solid #4CAF50;
-    border-collapse: collapse;
-}
-
-.customers tr:hover {
-    background-color: #ddd;
-}
-
-.customers th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
-    color: white;
 }
 
 ::-webkit-scrollbar {

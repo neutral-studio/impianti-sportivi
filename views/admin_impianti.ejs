@@ -31,30 +31,30 @@
          Tip 2: you can also add an image using data-image tag
      -->
             <div class="logo">
-                <a href="index" class="simple-text logo-normal myLogo">nevtral</a>
+                <a href="../../index" class="simple-text logo-normal myLogo">nevtral</a>
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li id="admin" class="nav-item">
-                        <a class="nav-link" href="" >
+                        <a class="nav-link" href="#" >
                             <i class="fas fa-chart-pie"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
                     <li id="impianti" class="nav-item ">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="/admin/impianti">
                             <i class="fas fa-tools"></i>
                             <p>Impianti</p>
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="#">
                             <i class="fas fa-smoking-ban"></i>
                             <p>OPZIONE 1</p>
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="#">
                             <i class="fas fa-smoking-ban"></i>
                             <p>OPZIONE 2</p>
                         </a>
@@ -82,10 +82,11 @@
                                     </div>
                                     <div class="col-md ">
                                         <!--TASTO FIGO-->
+                                        <a href="/admin/impianti/create" style="color: white;" vlink"#ffffff">
                                         <div class="float-md-right btn-figo" style="width: 175px;">
-                                            <!-- <a href="/create" vlink"#ffffff"><span><i class="fas fa-plus mr-2 "></i> Crea Impianto</span></a> -->
-                                            <a href="/create" style="color: white;" vlink"#ffffff"><span><i class="fas fa-plus mr-2 "></i>Crea Impianto</span></a>
+                                           <span><i class="fas fa-plus mr-2 "></i>Crea impianto</span>
                                         </div>
+                                        </a>
 
                                     </div>
                                 </div>
@@ -102,33 +103,35 @@
                                                 Indirizzo
                                             </th>
                                             <th>
-                                                Descrizione
+                                                Tipo di gestione
                                             </th>
                                             <th>
                                                 Gestore
                                             </th>
                                             <th>
-                                                Data Creazione
+                                                Sport
                                             </th>
                                         </thead>
                                         <tbody>
                                             <% impianti.forEach(impianto => { %>
                                                 <tr>
                                                     <td>
-                                                        <a href="/admin/impianti/<%= impianto._id %>">
+                                                        <a href="/admin/impianti/<%= impianto._id %>/edit"  style="color: black;" vlink"#ffffff">
                                                             <%= impianto.name %> </a>
                                                     </td>
                                                     <td>
                                                         <%= impianto.address %>
                                                     </td>
                                                     <td>
-                                                        <%= impianto.desc %>
+                                                        <%= impianto.managementType %>
                                                     </td>
                                                     <td>
                                                         <%= impianto.manager %>
                                                     </td>
-                                                    <td class="text-primary ">
-                                                        $36,738
+                                                    <td>
+                                                        <% impianto.sport.forEach(sp => { %>
+                                                            <%= sp + ';' %>
+                                                        <% }) %>
                                                     </td>
                                                 </tr>
                                             <% }); %>
@@ -371,4 +374,5 @@
         });
     </script>
 
-<%- include('./partials/footer') %>
+</body>
+</html>
